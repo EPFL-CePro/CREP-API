@@ -4,7 +4,8 @@
   "description": "CREP's API.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,8 @@
   "dependencies": {
     "express": "^5.1.0",
     "mysql2": "^3.14.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
