@@ -1,0 +1,25 @@
+services:
+  crep-api-db:
+    env_file:
+      - path: .env
+        required: true
+    image: mysql
+    container_name: crep-api-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+  crep-api:
+    image: "node"
+    user: "node"
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    container_name: crep-api
+    command: bash -c "npm ci && npm start"
+    ports:
+      - 3000:3000
